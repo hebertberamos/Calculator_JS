@@ -186,9 +186,6 @@ export function init(){
         event.preventDefault();
         resetNumberClick();
         handleInputChange(event);
-        // console.log(exp);
-        // const result = expressionController.numberExpression(state.Numbers.number1, state.Numbers.number2, exp);
-        // state.input.textContent = result;
 
         switch(state.Expression.usedExpression){
             case "+":
@@ -240,7 +237,7 @@ function handleInputChange(event){
     }
 }
 
-//Funcções secundárias
+//Funções secundárias
 
 let numClick = 0;
 let displayValue1 = "";

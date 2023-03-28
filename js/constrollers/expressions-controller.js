@@ -1,28 +1,3 @@
-// import Expression from "../constructor/expression-constructor.js";
-
-// function State(){
-//     this.Expression = new Expression();
-// }
-
-// const state = new State();
-
-// export function numberExpression(n1, n2, exp){
-//     switch(exp){
-//         case "+":
-//             sum(n1, n2);
-//         break;
-//         case "-":
-//             subtract(n1, n2);
-//         break;
-//         case "*":
-//             multiply(n1, n2);
-//         break;
-//         case "/":
-//             division(n1, n2);
-//         break;
-//         }
-// }
-
 export function sum(n1, n2){
     const num1 = parseFloat(n1);
     const num2 = parseFloat(n2);
