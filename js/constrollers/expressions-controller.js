@@ -31,9 +31,3 @@ export function convertDecimal(number){
     const result = decimal / 100;
     return result;
 }
-
-export function third(number){
-    const convertNumber = parseFloat(number);
-    const result = convertNumber / 3;
-    return result;
-}

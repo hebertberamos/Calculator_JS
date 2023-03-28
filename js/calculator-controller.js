@@ -10,7 +10,6 @@ function State(){
     this.input = null;
 
     this.btnClear = null;
-    this.btnOneThird = null;
     this.btnTurnProcentage = null;
 
     this.btnDivide = null;
@@ -36,8 +35,7 @@ const state = new State();
 
 export function init(){
     state.input = document.querySelector("#input");
-    state.btnClear = document.querySelector("#clear");
-    state.btnOneThird = document.querySelector("#oneThird");
+    state.btnClear = document.querySelector("#clearAll");
     state.btnTurnProcentage = document.querySelector("#turnPorcentage");
     state.btnDivide = document.querySelector("#divide");
     state.btnMultiply = document.querySelector("#multiply");
@@ -163,15 +161,6 @@ export function init(){
         state.Expression.usedExpression = "/";
         exp = "/";
         clear();
-    });
-
-
-    state.btnOneThird.addEventListener('click', (event) => {
-        event.preventDefault();
-        resetNumberClick();
-        const result = expressionController.third(state.input.textContent);
-        state.Numbers.number1 = result;
-        state.input.textContent = result;
     });
 
     state.btnTurnProcentage.addEventListener('click', (event) => {

@@ -34,7 +34,17 @@ main{
 }
 
 .body-calculator{
-    padding-top: 110px;
+    padding: 10px;
+}
+
+.historic{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 60px;
+    font-size: larger;
+    font-weight: 100;
+    color: #bbbbbb;
 }
 
 .display{
@@ -42,7 +52,6 @@ main{
     font-size: 55px;
     text-align: right;
     font-weight: 400;
-    margin-right: 10px;
 }
 
 .display h1{
@@ -50,7 +59,10 @@ main{
 }
 
 .card-buttons{
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 60px;
 }
 
 button{
@@ -60,14 +72,19 @@ button{
     height: 70px;
     width: 100%;
     max-width: 70px;
-    border-radius: 50%;
-    margin-left: 10px;
-    margin-top: 10px;
+    border-radius: 10%;
     border: 0;
 }
 
 button:hover{
     cursor: pointer;
+    background-color: #6d6d6d;
+}
+
+.line{
+    display: flex;
+    justify-content: space-around;
+    height: 80px;
 }
 
 .grey-button{
@@ -80,10 +97,15 @@ button:hover{
     color: white;
 }
 
+.orange-button:hover{
+    background-color: #fffefe;
+    color: #F8822C;
+}
+
 .bigger{
     width: 100%;
     max-width: 152px;
-    border-radius: 50px;
+    border-radius: 10px;
     text-align: left;
     padding-left: 25px;
 }
