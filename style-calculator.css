@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: helvetica;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(49, 48, 48);
+    color: white;
+    position: relative
+}
+
+main{
+    position: relative;
+    height: 100vh;
+}
+
+.calc p{
+    margin-right: 10px;
+}
+
+.calculator{
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 600px;
+    width: 100%;
+    max-width: 345px;
+}
+
+.body-calculator{
+    padding-top: 110px;
+}
+
+.display{
+    height: 62.5px;
+    font-size: 55px;
+    text-align: right;
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+.display h1{
+    overflow: hidden;
+}
+
+.card-buttons{
+    margin-top: 20px;
+}
+
+button{
+    background-color: #3A3A3A;
+    color: white;
+    font-size: 32px;
+    height: 70px;
+    width: 100%;
+    max-width: 70px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 10px;
+    border: 0;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.grey-button{
+    background-color: #AEAEAE;
+    color: black;
+}
+
+.orange-button{
+    background-color: #F8822C;
+    color: white;
+}
+
+.bigger{
+    width: 100%;
+    max-width: 152px;
+    border-radius: 50px;
+    text-align: left;
+    padding-left: 25px;
+}
