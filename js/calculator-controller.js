@@ -128,15 +128,14 @@ export function init(){
     //                              SOMA
     state.btnSum.addEventListener('click', (event) => {
         event.preventDefault();
-        if(!state.Numbers.number2 == ""){
-            state.Numbers.number2 = "";
-        }
-
         handleInputChange();
 
-        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
-            handleBtnEqualityClick(event);
-        }
+        console.log("primeiro número: ", state.Numbers.number1);
+        console.log("segundo número: ", state.Numbers.number2);
+        console.log("BOTÃO DE SOMAR PRESSIONADO");
+        
+        console.log("segundo número: ", state.Numbers.number2);
+
         state.Expression.usedExpression = "+";
         state.exp.textContent = "+";
 
@@ -151,6 +150,7 @@ export function init(){
         state.input.textContent = state.Numbers.number1;
     });
 
+
     //                          SUBTRAÇÃO
 
     state.btnSubtract.addEventListener('click', (event) => {
@@ -161,10 +161,6 @@ export function init(){
         }
 
         handleInputChange();
-    
-        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
-            handleBtnEqualityClick(event);
-        }
 
         state.Expression.usedExpression = "-";
         state.exp.textContent = "-";
@@ -191,10 +187,6 @@ export function init(){
 
         handleInputChange();
 
-        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
-            handleBtnEqualityClick(event);
-        }
-
         state.Expression.usedExpression = "*";
         state.exp.textContent = "*";
 
@@ -220,11 +212,7 @@ export function init(){
         }
 
         handleInputChange();
-
-        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
-            handleBtnEqualityClick(event);
-        }
-
+        
         state.Expression.usedExpression = "/";
         state.exp.textContent = "/";
 
@@ -284,41 +272,43 @@ function handleInputChange(){
 
 function handleBtnEqualityClick(event){
     event.preventDefault();
-        handleInputChange();
+    handleInputChange();
         
-        console.log("IGUALDADE ATES DO CALCULO primeiro número: ", state.Numbers.number1);
-        console.log("IGUALDADE ATES DO CALCULO segundo número: ", state.Numbers.number2);
-        console.log("IGUALDADE ATES DO CALCULO resultado: ", result);
+    console.log("primeiro número: ", state.Numbers.number1);
+    console.log("expressão utilizada: ", state.Expression.usedExpression);
+    console.log("segundo número: ", state.Numbers.number2);
 
-        switch(state.Expression.usedExpression){
-            case "+":
-                const resultSum = expressionController.sum(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultSum;
-                result = resultSum;
-                state.Numbers.number1 = result;
-                break;
-            case "-":
-                const resultSubtract = expressionController.subtract(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultSubtract;
-                result = resultSubtract;
-                state.Numbers.number1 = result;
-                break;
-            case "*":
-                const resultMultiply = expressionController.multiply(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultMultiply;
-                result = resultMultiply;
-                state.Numbers.number1 = result;
-                break;
-            case "/":
-                const resultDivision = expressionController.division(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultDivision; 
-                result = resultDivision;
-                state.Numbers.number1 = result;
-        }
+    switch(state.Expression.usedExpression){
+        case "+":
+            const resultSum = expressionController.sum(state.Numbers.number1, state.Numbers.number2);
+            state.input.textContent = resultSum;
+            result = resultSum;
+            state.Numbers.number1 = result;
+            break;
+        case "-":
+            const resultSubtract = expressionController.subtract(state.Numbers.number1, state.Numbers.number2);
+            state.input.textContent = resultSubtract;
+            result = resultSubtract;
+            state.Numbers.number1 = result;
+            break;
+        case "*":
+            const resultMultiply = expressionController.multiply(state.Numbers.number1, state.Numbers.number2);
+            state.input.textContent = resultMultiply;
+            result = resultMultiply;
+            state.Numbers.number1 = result;
+            break;
+        case "/":
+            const resultDivision = expressionController.division(state.Numbers.number1, state.Numbers.number2);
+            state.input.textContent = resultDivision; 
+            result = resultDivision;
+            state.Numbers.number1 = result;
+    }
 
-        console.log("IGUALDADE primeiro número: ", state.Numbers.number1);
-        console.log("IGUALDADE segundo número: ", state.Numbers.number2);
-        console.log("IGUALDADE resultado: ", result);
+    console.log("");
+    console.log("VALOR DO CALCULO ");
+    console.log("resultado: ", result);
+    console.log("expressoa utilizada: ", state.Expression.usedExpression);
+    console.log("o que está aparecendo na tela: ", state.input.textContent);
 }
 
 //Funções secundárias
