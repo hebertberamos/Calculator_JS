@@ -125,47 +125,119 @@ export function init(){
         changeDisplay(displayValue1);
     });
 
-
+    //                              SOMA
     state.btnSum.addEventListener('click', (event) => {
         event.preventDefault();
+        if(!state.Numbers.number2 == ""){
+            state.Numbers.number2 = "";
+        }
+
         handleInputChange();
+
+        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
+            handleBtnEqualityClick(event);
+        }
         state.Expression.usedExpression = "+";
         state.exp.textContent = "+";
-        console.log("primeiro números: ", state.Numbers.number1);
-        console.log(state.Expression.usedExpression);
-        console.log("segundo números:", state.Numbers.number2);
-        if(state.Expression.usedExpression == "+" && !state.Numbers.number2 == ""){
-            const result = expressionController.sum(state.Numbers.number1, state.Numbers.number2);
-            state.Numbers.number1 = result;
-        }
-        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
+
+        //ADICIONANDO O RESULTADO DO CALCULO AO PRIMEIRO ELEMENTO DO HISTÓRICO 
+        //E APAGANDO O SEGUNDO ENQUANTO NÃO FOR PRESSIONADO O BOTÃO DE IGUALDADE
+        if(!state.input.textContent == ""){
             state.num1.textContent = state.Numbers.number1;
-            console.log("não estão vazios");
             state.num2.textContent = "";
         }
+
         clear();
         state.input.textContent = state.Numbers.number1;
     });
 
+    //                          SUBTRAÇÃO
+
     state.btnSubtract.addEventListener('click', (event) => {
         event.preventDefault();
+
+        if(!state.Numbers.number2 == ""){
+            state.Numbers.number2 = "";
+        }
+
         handleInputChange();
+    
+        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
+            handleBtnEqualityClick(event);
+        }
+
         state.Expression.usedExpression = "-";
+        state.exp.textContent = "-";
+
+        //ADICIONANDO O RESULTADO DO CALCULO AO PRIMEIRO ELEMENTO DO HISTÓRICO 
+        //E APAGANDO O SEGUNDO ENQUANTO NÃO FOR PRESSIONADO O BOTÃO DE IGUALDADE
+        if(!state.input.textContent == ""){
+            state.num1.textContent = state.Numbers.number1;
+            state.num2.textContent = "";
+        }
+
         clear();
+        state.input.textContent = state.Numbers.number1;
     });
+
+    //                      MULTIPLICACAO
 
     state.btnMultiply.addEventListener('click', (event) => {
         event.preventDefault();
+
+        if(!state.Numbers.number2 == ""){
+            state.Numbers.number2 = "";
+        }
+
         handleInputChange();
+
+        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
+            handleBtnEqualityClick(event);
+        }
+
         state.Expression.usedExpression = "*";
+        state.exp.textContent = "*";
+
+
+        //ADICIONANDO O RESULTADO DO CALCULO AO PRIMEIRO ELEMENTO DO HISTÓRICO 
+        //E APAGANDO O SEGUNDO ENQUANTO NÃO FOR PRESSIONADO O BOTÃO DE IGUALDADE
+        if(!state.input.textContent == ""){
+            state.num1.textContent = state.Numbers.number1;
+            state.num2.textContent = "";
+        }
+
         clear();
+        state.input.textContent = state.Numbers.number1;
     });
 
+    //                          DIVISAO
+    
     state.btnDivide.addEventListener('click', (event) => {sum
         event.preventDefault();
+
+        if(!state.Numbers.number2 == ""){
+            state.Numbers.number2 = "";
+        }
+
         handleInputChange();
+
+        if(!state.Numbers.number1 == "" && !state.Numbers.number2 == ""){
+            handleBtnEqualityClick(event);
+        }
+
         state.Expression.usedExpression = "/";
+        state.exp.textContent = "/";
+
+
+        //ADICIONANDO O RESULTADO DO CALCULO AO PRIMEIRO ELEMENTO DO HISTÓRICO 
+        //E APAGANDO O SEGUNDO ENQUANTO NÃO FOR PRESSIONADO O BOTÃO DE IGUALDADE
+        if(!state.input.textContent == ""){
+            state.num1.textContent = state.Numbers.number1;
+            state.num2.textContent = "";
+        }
+
         clear();
+        state.input.textContent = state.Numbers.number1;
     });
 
     state.btnTurnProcentage.addEventListener('click', (event) => {
@@ -175,46 +247,23 @@ export function init(){
         state.input.textContent = result;
     });
 
-    state.btnEquality.addEventListener('click', (event) => {
-        event.preventDefault();
-        handleInputChange();
+    //BOTÃO DE IGUALDADE
+    state.btnEquality.addEventListener('click', handleBtnEqualityClick);
 
-        switch(state.Expression.usedExpression){
-            case "+":
-                const resultSum = expressionController.sum(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultSum; 
-                state.Numbers.number1 = resultSum;
-                break;
-            case "-":
-                const resultSubtract = expressionController.subtract(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultSubtract; 
-                state.Numbers.number1 = resultSubtract;
-                break;
-            case "*":
-                const resultMultiply = expressionController.multiply(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultMultiply; 
-                state.Numbers.number1 = resultMultiply;
-                break;
-            case "/":
-                const resultDivision = expressionController.division(state.Numbers.number1, state.Numbers.number2);
-                state.input.textContent = resultDivision; 
-                state.Numbers.number1 = resultDivision;
-        }
-    });
-
-
-
+    //BOTÃO DE LIMPAR TUDO
     state.btnClearAll.addEventListener('click', (event) => {
         event.preventDefault();
         clearAll();
     });
 
+    //BOTÃO DE LIMPAR
     state.btnClear.addEventListener('click', (event) =>{
         event.preventDefault();
         clear();
 
     });
 
+    //VIRGULA
     state.btnComma.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += ".";
@@ -233,9 +282,49 @@ function handleInputChange(){
     }
 }
 
+function handleBtnEqualityClick(event){
+    event.preventDefault();
+        handleInputChange();
+        
+        console.log("IGUALDADE ATES DO CALCULO primeiro número: ", state.Numbers.number1);
+        console.log("IGUALDADE ATES DO CALCULO segundo número: ", state.Numbers.number2);
+        console.log("IGUALDADE ATES DO CALCULO resultado: ", result);
+
+        switch(state.Expression.usedExpression){
+            case "+":
+                const resultSum = expressionController.sum(state.Numbers.number1, state.Numbers.number2);
+                state.input.textContent = resultSum;
+                result = resultSum;
+                state.Numbers.number1 = result;
+                break;
+            case "-":
+                const resultSubtract = expressionController.subtract(state.Numbers.number1, state.Numbers.number2);
+                state.input.textContent = resultSubtract;
+                result = resultSubtract;
+                state.Numbers.number1 = result;
+                break;
+            case "*":
+                const resultMultiply = expressionController.multiply(state.Numbers.number1, state.Numbers.number2);
+                state.input.textContent = resultMultiply;
+                result = resultMultiply;
+                state.Numbers.number1 = result;
+                break;
+            case "/":
+                const resultDivision = expressionController.division(state.Numbers.number1, state.Numbers.number2);
+                state.input.textContent = resultDivision; 
+                result = resultDivision;
+                state.Numbers.number1 = result;
+        }
+
+        console.log("IGUALDADE primeiro número: ", state.Numbers.number1);
+        console.log("IGUALDADE segundo número: ", state.Numbers.number2);
+        console.log("IGUALDADE resultado: ", result);
+}
+
 //Funções secundárias
 
 let displayValue1 = "";
+let result = "";
 
 function changeDisplay(value){
     state.input.textContent = value;
