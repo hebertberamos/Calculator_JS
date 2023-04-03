@@ -25,9 +25,3 @@ export function division(n1, n2){
     const result = num1 / num2;
     return(result);
 }
-
-export function convertDecimal(number){
-    const decimal = parseFloat(number);
-    const result = decimal / 100;
-    return result;
-}
