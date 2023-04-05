@@ -65,64 +65,76 @@ export function init(){
     state.btnEight = document.querySelector("#numberEight");
     state.btnNine = document.querySelector("#numberNine");
 
+    state.input.addEventListener('change', handleInputChangeClick);
+
     state.btnZero.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 0;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnOne.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 1;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnTwo.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 2;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnThree.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 3;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnFour.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 4;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     })
 
     state.btnFive.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 5;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnSix.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 6;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnSeven.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 7;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnEight.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 8;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event)
     });
 
     state.btnNine.addEventListener('click', (event) => {
         event.preventDefault();
         displayValue1 += 9;
         changeDisplay(displayValue1);
+        handleInputChangeClick(event);
     });
 
     //                              SOMA
@@ -146,6 +158,7 @@ export function init(){
             state.num2.textContent = "";
         }
 
+        console.log("primeiro número acionando o botão de soma: ", state.Numbers.number1);
         clear();
         state.input.textContent = state.Numbers.number1;
     });
@@ -158,6 +171,10 @@ export function init(){
         state.Expression.usedExpression = "-";
         handleInputChange();
 
+        if(state.Numbers.number1 == ""){
+            state.Numbers.number1 = "0";
+        }
+        console.log(state.Numbers.number1);
         if(state.Numbers.number1 == ""){
             return;
         }
@@ -219,8 +236,6 @@ export function init(){
             state.exp.textContent = "/";    
         }
         
-
-
         //ADICIONANDO O RESULTADO DO CALCULO AO PRIMEIRO ELEMENTO DO HISTÓRICO 
         //E APAGANDO O SEGUNDO ENQUANTO NÃO FOR PRESSIONADO O BOTÃO DE IGUALDADE
         if(!state.input.textContent == ""){
@@ -236,8 +251,6 @@ export function init(){
     state.btnClearLastElement.addEventListener('click', (event) => {
         event.preventDefault();
         clearLastElement();
-        console.log("valor do input: ", state.input.textContent);
-        
     });
 
     //BOTÃO DE LIMPAR TUDO
@@ -257,7 +270,18 @@ export function init(){
     state.btnComma.addEventListener('click', (event) => {
         event.preventDefault();
 
-        if(displayValue1.length === 0){
+        if(!state.Numbers.number1 == "" && state.Numbers.number2 == null){
+            displayValue1 += "0.";
+            changeDisplay(displayValue1);
+        }
+
+        if(state.input.innerText === result){
+            clearAll();
+            displayValue1 = "0.";
+            changeDisplay(displayValue1);
+        }
+
+        if(state.input.innerText === "0"){
             displayValue1 += "0.";
             changeDisplay(displayValue1);
         }
@@ -276,6 +300,16 @@ export function init(){
 }
 
 //Funções secundárias
+
+function handleInputChangeClick(event){
+    console.log("valor mudado: ", state.input.innerText);
+    console.log("valor que esta no RESULT: ", result);
+
+    if(state.input.innerText.length > 10){
+        console.log("ultrapassou");
+        state.input.innerText = state.input.innerText.substring(0, 11);
+    }
+}
 
 function handleInputChange(){
     if(!state.Numbers.number1 || state.Numbers.number1 == ""){
@@ -303,39 +337,44 @@ function handleBtnEqualityClick(event){
     switch(state.Expression.usedExpression){
         case "+":
             const resultSum = expressionController.sum(state.Numbers.number1, state.Numbers.number2);
-            state.input.textContent = resultSum;
-            result = resultSum;
+            result = resultSum.toString();
+            state.input.textContent = result;
             state.Numbers.number1 = result;
-            displayValue1 = resultSum;
+            displayValue1 = result;
             break;
         case "-":
             const resultSubtract = expressionController.subtract(state.Numbers.number1, state.Numbers.number2);
-            state.input.textContent = resultSubtract;
-            result = resultSubtract;
+            result = resultSubtract.toString();
+            state.input.textContent = result;
             state.Numbers.number1 = result;
-            displayValue1 = resultSubtract;
+            displayValue1 = result;
             break;
         case "*":
             const resultMultiply = expressionController.multiply(state.Numbers.number1, state.Numbers.number2);
-            state.input.textContent = resultMultiply;
-            result = resultMultiply;
+            result = resultMultiply.toString();
+            state.input.textContent = result;
             state.Numbers.number1 = result;
-            displayValue1 = resultMultiply;
+            displayValue1 = result;
             break;
         case "/":
             const resultDivision = expressionController.division(state.Numbers.number1, state.Numbers.number2);
-            state.input.textContent = resultDivision; 
-            result = resultDivision;
+            result = resultDivision.toString();
+            state.input.textContent = result; 
             state.Numbers.number1 = result;
-            displayValue1 = resultDivision;
+            displayValue1 = result;
     }
+
+    handleInputChangeClick(event);
 
     console.log("");
     console.log("VALOR DO CALCULO ");
-    console.log("resultado: ", result);
-    console.log("expressoa utilizada: ", state.Expression.usedExpression);
-    console.log("valor do input no momento da igualdade: ", state.input.textContent);
-    console.log("valor do displayValue no momento da igualdade: ", displayValue1);
+    console.log("RESULT: ", result);
+    console.log("state.Numbers.number1: ", state.Numbers.number1);
+    console.log("state.Expression.usedExpression: ", state.Expression.usedExpression);
+    console.log("state.Numbers.number2: ", state.Numbers.number2);
+    console.log("state.input.innerText: ", state.input.textContent);
+    console.log("displayValue1: ", displayValue1);
+    console.log("state.input.innerText: ", state.input.innerText)
 }
 
 let displayValue1 = "";
@@ -361,6 +400,9 @@ function clearAll(){
 }
 
 function clearLastElement(){
+    if(state.input.innerText == "0"){
+        return;
+    }
     displayValue1 = displayValue1.slice(0, -1);
     state.input.textContent = displayValue1;
 }
